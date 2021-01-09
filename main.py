@@ -27,7 +27,7 @@ print('\n\nU$S', res, ' em reais é igual a: R$ ', valorReal, '\n\n')
 def getValorEuro ():
     html_da_pag_euro = request.urlopen('https://www.dolarhoje.net.br/euro-hoje/')
 
-    findEur = '<input type="text" id="moeda" value="6,58"'
+    findEur = '<input type="text" id="moeda" '
 
     listaEur = (html_da_pag_euro.read().decode('utf-8')).split(findEur)
 
@@ -41,7 +41,7 @@ def getValorEuro ():
    
     return float_realEur
 
-resEur = float(input('Quantos euros você quer converter? Ex:20€\n >:€'))
+resEur = float(input('Quantos euros você quer converter? Ex: € 20\n>: € '))
 
 umEuroEmReais = getValorEuro()
 
