@@ -1,21 +1,21 @@
 from urllib import request
 
 def getValorDolar ():
-    html_da_pagina = request.urlopen('https://dolarhoje.com/')
+    html_da_pagina = request.urlopen('https://dolarhoje.com/') 
 
-    find = '<input type="text" id="nacional" '
+    find = '<input type="text" id="nacional" ' #diz onde vai quebrar pra transformar em lista
+    
+    lista = (html_da_pagina.read().decode('utf-8')).split(find) #quebrar
 
-    lista = (html_da_pagina.read().decode('utf-8')).split(find)
+    parte2 = (lista[1]).split() #separar por espaço já q n tá escrito nada
 
-    parte2 = (lista[1]).split()
+    value_html = parte2[0] #parte que interessa da lista
 
-    value_html = parte2[0]
+    valor_real = (value_html.split('"'))[1] #separar o valor a partir das aspas e pegar o índice 1
 
-    valor_real = (value_html.split('"'))[1]
+    float_real = float(valor_real.replace(',', '.')) #trocar a "," pro "." e converter pro float
 
-    float_real = float(valor_real.replace(',', '.'))
-
-    return float_real
+    return float_real #retorna o float_real
 
 res = float(input('Quantos dólares você quer converter? Ex: U$S 2.32\n>: U$S '))
 umDolarEmReal = getValorDolar()
@@ -29,7 +29,7 @@ def getValorEuro ():
 
     findEur = '<input type="text" id="moeda" '
 
-    listaEur = (html_da_pag_euro.read().decode('utf-8')).split(findEur)
+    listaEur = (html_da_pag_euro.read().decode('utf-8')).split(findEur) 
 
     parte3 = (listaEur[1]).split()
 
